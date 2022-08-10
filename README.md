@@ -196,3 +196,25 @@ deploy_production:
 ```
 
 dind : docker in docker
+
+### GitLab + GCP
+
+.gitlab-ci.yml
+
+```yaml
+default:
+    image: google/cloud-sdk:alpine
+    before_script:
+        - gcloud config set project <my_gcp_project>
+        - gcloud auth activate-service-account --key-file $GCP_SERVICE_CREDS
+
+build:
+    stage: build
+    script:
+        - gcloud build submit --tag gcr.io/<my_image_url>:latest
+
+deploy:
+    stage: deploy
+    script:
+        - gcloud run deploy <my_cloud_run_service> --image gcr.io/<my_image_url>:latest --platform managed --region us-west1 --allow-unauthenticated
+```
