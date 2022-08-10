@@ -4,6 +4,8 @@ My GitLab
 
 ## GitLab CI/CD pipeline
 
+### Simple
+
 .gitlab-ci.yml
 
 ```yaml
@@ -27,3 +29,13 @@ test:
         - echo "Testing"
         - test -f "build/info.txt"
 ```
+
+### GitLab Runner
+
+### Docker Image
+
+```yaml
+...
+```
+
+## Free GitLab + Free Netlify ???
