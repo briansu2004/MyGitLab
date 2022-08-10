@@ -38,4 +38,8 @@ test:
 ...
 ```
 
-## Free GitLab + Free Netlify ???
+### Free GitLab + Free Netlify ???
+
+### GitLab + GCP (Google Cloud SDK) + Skaffold
+
+Skaffold is a command-line tool developed by Google that makes it really easy to setup CI/CD for local, development and production environments with Kubernetes. It handles the full workflow of building and pushing docker containers to the docker container registry, and deploying applications to Kubernetes.
