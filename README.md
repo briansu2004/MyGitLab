@@ -2,6 +2,23 @@
 
 My GitLab
 
+## GitLab 2FA
+
+Got a tricky issue for a while and finally resolved it
+
+Root cause:
+
+The timezone needs to be the same with the GitLab server!
+
+Steps:
+
+```dos
+- install Google auth app in my iPhone
+- Scan QR code to add my GitLab account
+- General -> Settings -> Time zone -> if my TZ is different with then GL server, don't use auto, change it to the same as GL server's (very import)
+- Hooray
+```
+
 ## GitLab CI/CD pipeline
 
 ### Simple
