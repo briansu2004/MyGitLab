@@ -2,6 +2,58 @@
 
 My GitLab
 
+## My GitLab pipeline + GCP (GCS + BigQuery) + Python project
+
+BigQuery Client Libraries
+
+<https://cloud.google.com/bigquery/docs/reference/libraries#client-libraries-install-python>
+
+`pip install --upgrade google-cloud-bigquery`
+
+```python
+from google.cloud import bigquery
+
+# Construct a BigQuery client object.
+client = bigquery.Client()
+
+query = """
+    SELECT name, SUM(number) as total_people
+    FROM `bigquery-public-data.usa_names.usa_1910_2013`
+    WHERE state = 'TX'
+    GROUP BY name, state
+    ORDER BY total_people DESC
+    LIMIT 20
+"""
+query_job = client.query(query)  # Make an API request.
+
+print("The query data:")
+for row in query_job:
+    # Row values can be accessed by field name or index.
+    print("name={}, count={}".format(row[0], row["total_people"]))
+```
+
+Cloud Storage client libraries
+
+<https://cloud.google.com/storage/docs/reference/libraries#client-libraries-install-python>
+
+`pip install --upgrade google-cloud-storage`
+
+```python
+# Imports the Google Cloud client library
+from google.cloud import storage
+
+# Instantiates a client
+storage_client = storage.Client()
+
+# The name for the new bucket
+bucket_name = "my-new-bucket"
+
+# Creates the new bucket
+bucket = storage_client.create_bucket(bucket_name)
+
+print(f"Bucket {bucket.name} created.")
+```
+
 ## GitLab 2FA
 
 Got a tricky issue for a while and finally resolved it
@@ -265,4 +317,68 @@ or
 ```dos
 curl --request POST \
     "https://gitlab.example.com/api/v4/projects/<project_id>/trigger/pipeline?token=<token>&ref=<ref_name>"
+```
+
+### How to trigger my GitLab pipeline by the event of a new file has been dropped to my GCS bucket
+
+With GitLab, your pipelines run inside containers. So you can specify a container image that already has gsutil installed. No need to reinstall it every time it runs. Google maintains a container image called google/google-cloud-sdk that contains a lot of GCP command line tools pre-installed (writing this off the top of my head, the actual name may be slightly different).
+
+So in your case you'd want a '.gitlab-ci.yml' file in the root of your repo that specifies the right container image, a “stage” to define your pipeline job, and then a set of commands to upload your file.
+
+You'll also want to store the credentials to access the GCP bucket somewhere in GitLab. Easiest option that isn't too insecure is to store it in GitLab “secrets” which you'll find in your repository's settings page. You can give your secret a variable name and the value (which could be a GCP service account .json file). Then you can reference it in your pipeline as a normal environment variable.
+
+Putting it all together, it could look something like this:
+
+```yaml
+image: google/google-cloud-sdk
+
+stages:
+  - upload_file
+
+upload_file:
+  script:
+    # Setup credentials file to access GCP from our environment variable
+    - echo "$GCP_SERVICE_ACCOUNT_JSON" > <my-service-account-json-file>  # e.g. service-account.json
+    - gcloud auth activate-service-account —key-file <my-service-account-json-file>
+    - gsutil cp <file_from> <file_to>
+
+  after_script:
+    # Cleanup service account credentials file
+    - rm <my-service-account-json-file>
+    # Archive the processed file?
+    - mv <file_to> <file_archive_name>
+
+  # Only run this job when this file is changed in a commit
+  only:
+    refs:
+      - branches
+    changes:
+      - <file_that_triggers_the_upload>
+```
+
+<https://docs.gitlab.com/ee/ci/yaml/#onlychanges--exceptchanges>
+
+Example of only:changes:
+
+```yaml
+docker build:
+  script: docker build -t my-image:$CI_COMMIT_REF_SLUG .
+  only:
+    refs:
+      - branches
+    changes:
+      - Dockerfile
+      - docker/scripts/*
+      - dockerfiles/**/*
+      - more_scripts/*.{rb,py,sh}
+      - "**/*.json"
+```
+
+Additional details:
+
+```dos
+changes resolves to true if any of the matching files are changed (an OR operation).
+If you use refs other than branches, external_pull_requests, or merge_requests, changes can’t determine if a given file is new or old and always returns true.
+If you use only: changes with other refs, jobs ignore the changes and always run.
+If you use except: changes with other refs, jobs ignore the changes and never run.
 ```
