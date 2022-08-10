@@ -218,3 +218,51 @@ deploy:
     script:
         - gcloud run deploy <my_cloud_run_service> --image gcr.io/<my_image_url>:latest --platform managed --region us-west1 --allow-unauthenticated
 ```
+
+### How to trigger a GitLab pipeline
+
+#### Use a CI/CD job - yes
+
+For example, to trigger a pipeline on the `main` branch of `project-B` when a tag is created in `project-A`, add the following job to project A's `.gitlab-ci.yml` file:
+
+```yaml
+trigger_pipeline:
+  stage: deploy
+  script:
+    - 'curl --fail --request POST --form token=$MY_TRIGGER_TOKEN --form ref=main "https://gitlab.example.com/api/v4/projects/123456/trigger/pipeline"'
+  rules:
+    - if: $CI_COMMIT_TAG
+```
+
+In this example:
+
+```dos
+123456 is the project ID for project-B. The project ID is displayed at the top of every project's landing page. 
+(can it be changed as )
+
+The rules cause the job to run every time a tag is added to project-A.
+
+MY_TRIGGER_TOKEN is a masked CI/CD variables that contains the trigger token.
+```
+
+#### Use a webhook - maybe
+
+```dos
+https://gitlab.example.com/api/v4/projects/<project_id>/ref/<ref_name>/trigger/pipeline?token=<token>
+```
+
+#### Use cURL - nah
+
+```dos
+curl --request POST \
+     --form token=<token> \
+     --form ref=<ref_name> \
+     "https://gitlab.example.com/api/v4/projects/<project_id>/trigger/pipeline"
+```
+
+or
+
+```dos
+curl --request POST \
+    "https://gitlab.example.com/api/v4/projects/<project_id>/trigger/pipeline?token=<token>&ref=<ref_name>"
+```
