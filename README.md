@@ -382,3 +382,29 @@ If you use refs other than branches, external_pull_requests, or merge_requests, 
 If you use only: changes with other refs, jobs ignore the changes and always run.
 If you use except: changes with other refs, jobs ignore the changes and never run.
 ```
+
+## GitLab set up
+
+Too complicated
+
+Too many tricks
+
+GitHub Actions will win this game.
+
+### SSH key
+
+This is the only easy item.
+
+### Perosnal Access Token
+
+Very tricky
+
+Don't tick all the check boxes!
+
+### PGP key
+
+Very tricky for Windows users
+
+The offical documentation has problems!
+
+Solution: use the full path of pgp!
