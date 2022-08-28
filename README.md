@@ -408,3 +408,7 @@ Very tricky for Windows users
 The offical documentation has problems!
 
 Solution: use the full path of pgp!
+
+## Misc
+
+GitLab flavoured Markdown (GLFM)
