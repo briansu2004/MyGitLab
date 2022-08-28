@@ -2,7 +2,7 @@
 
 My GitLab
 
-## My GitLab pipeline + GCP (GCS + BigQuery) + Python project
+## My GitLab (pipeline + Merge Request template) + GCP (GCS + BigQuery + CLI) + Python project
 
 BigQuery Client Libraries
 
