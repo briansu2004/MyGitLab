@@ -4,6 +4,36 @@ My GitLab
 
 ## My GitLab pipeline + GCP (GCS + BigQuery) + Python project
 
+### Business flow
+
+- Data Owner (not technical)
+  - Check data
+  - Create data changes (follow the rules)
+  - Create the SNOW request
+
+- Data Governance (not technical)
+  - Approve or decline the SNOW request
+
+- Data Operator (technical)
+  - Create GitLab feature branch based on the approved SNOW request
+  - Submit the MR (merge request)
+
+- Data Governance (not technical)
+  - Approve the merge request based on the MR checklist (template)
+
+- GitLab
+  - Do some validations with Python (e.g. a csv file needs to have a json file to have the same schema)
+  - Only pick up the file changes in the MR with CLI
+  - Sort the file changes bases on the different environments / GCP projects with CLI
+  - Create all the scripts bases on the different environments / GCP projects with Python
+  - Merge the data from GitLab repo to BigQuery tables (reload with the csv and json files) with CLI
+  - Merge the data from GitLab repo to GCS buckets (sync) with CLI
+
+- Downstream applications
+  - Enjoy the new data
+
+### Different approach with pure Python (didn't use)
+
 BigQuery Client Libraries
 
 <https://cloud.google.com/bigquery/docs/reference/libraries#client-libraries-install-python>
