@@ -2,7 +2,7 @@
 
 My GitLab
 
-## My GitLab pipeline + GCP (GCS + BigQuery) + Python project
+## My GitLab (pipeline + Merge Request template) + GCP (GCS + BigQuery + CLI) + Python project
 
 ### Business flow
 
@@ -438,3 +438,7 @@ Very tricky for Windows users
 The offical documentation has problems!
 
 Solution: use the full path of pgp!
+
+## Misc
+
+GitLab flavoured Markdown (GLFM)
