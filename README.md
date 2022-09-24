@@ -439,6 +439,28 @@ The offical documentation has problems!
 
 Solution: use the full path of pgp!
 
+## GitLab issues
+
+There are lots of defects for different versions.
+
+### git diff / git diff-tree $CI__SHORT_SHA
+
+This one doesn't work properly!
+
+Try with these ideas:
+
+![1663985477900](image/README/1663985477900.png)
+
+```dos
+merge request pipeline 
+
++<sha>:refs/pipelines/<id>
+```
+
+$CI_PIPELINE_SOURCE
+
+How the pipeline was triggered. Can be push, web, schedule, api, external, chat, webide, `merge_request_event`, external_pull_request_event, parent_pipeline, trigger, or pipeline. For a description of each value, see Common if clauses for rules, which uses this variable to control when jobs run.
+
 ## Misc
 
 GitLab flavoured Markdown (GLFM)
