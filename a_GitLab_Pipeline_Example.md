@@ -66,6 +66,12 @@ my-dev/Fraud/Fraud_Language.csv
 [my-prod] No csv file changes detected!
 ```
 
+![02_01](image/a_gl_pipe_example/02_01.png)
+
+![02_02](image/a_gl_pipe_example/02_02.png)
+
+![02_03](image/a_gl_pipe_example/02_03.png)
+
 ## #3 Merge Request is open; Feature branch has not csv updates
 
 Note: another "duplicated" pipeline got triggers as soon as the MR got created.
