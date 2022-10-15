@@ -167,7 +167,15 @@ CI_MERGE_REQUEST_TARGET_BRANCH_NAME is:
 CI_COMMIT_SHA is: f634225966e3deb9a98756167343cc2e06c50dae
 CI_MERGE_REQUEST_SOURCE_BRANCH_SHA is:
 CI_MERGE_REQUEST_TARGET_BRANCH_SHA is:
+```
 
+![05_01](image/a_gl_pipe_example/05_01.png)
+
+![05_02](image/a_gl_pipe_example/05_02.png)
+
+![05_03](image/a_gl_pipe_example/05_03.png)
+
+```dos
 CI_BUILD_REF_NAME is: master
 CI_COMMIT_REF_NAME is: master
 CI_MERGE_REQUEST_APPROVED is:
@@ -196,3 +204,11 @@ my-ing/Fraud/Fraud_Province.csv
 [my-tst] No csv file changes detected!
 [my-prod] No csv file changes detected!
 ```
+
+![05_04](image/a_gl_pipe_example/05_04.png)
+
+`f634225966e3deb9a98756167343cc2e06c50dae`
+
+![05_05](image/a_gl_pipe_example/05_05.png)
+
+![05_06](image/a_gl_pipe_example/05_06.png)
