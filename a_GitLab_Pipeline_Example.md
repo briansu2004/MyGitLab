@@ -103,6 +103,14 @@ README.md
 [All environments (my-ing, my-dev, my-tst, my-prod)] No csv file changes detected!
 ```
 
+![03_01](image/a_gl_pipe_example/03_01.png)
+
+![03_02](image/a_gl_pipe_example/03_02.png)
+
+![03_03](image/a_gl_pipe_example/03_03.png)
+
+![03_04](image/a_gl_pipe_example/03_04.png)
+
 ## #4 Merge Request is open; Feature branch has csv updates
 
 ```dos
