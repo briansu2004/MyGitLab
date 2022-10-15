@@ -144,13 +144,19 @@ cat my-dev_diff.txt
 my-dev/Treasury/Treasury_Province.csv
 [my-tst] No csv file changes detected!
 [my-prod] No csv file changes detected!
+```
 
 so far, #1 #2 #3 #4
 
-CI_BUILD_REF_NAME is: feat/summarize
+`CI_BUILD_REF_NAME is: feat/summarize`
 
-# 5 Merge Request is "merged" after the approvals; merged csv updates from feature branch to master
+![04_01](image/a_gl_pipe_example/04_01.png)
 
+![04_02](image/a_gl_pipe_example/04_02.png)
+
+## #5 Merge Request is "merged" after the approvals; merged csv updates from feature branch to master
+
+```dos
 CI_BUILD_REF_NAME is: master
 CI_COMMIT_REF_NAME is: master
 CI_MERGE_REQUEST_APPROVED is:
