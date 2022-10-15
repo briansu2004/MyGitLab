@@ -27,6 +27,12 @@ check_diff_mr.sh
 [All environments (my-ing, my-dev, my-tst, my-prod)] No csv file changes detected!
 ```
 
+![01_01](image/a_gl_pipe_example/01_01.png)
+
+![01_02](image/a_gl_pipe_example/01_02.png)
+
+![01_03](image/a_gl_pipe_example/01_03.png)
+
 ## #2 Merge Request is not open; Feature branch has csv updates
 
 ```dos
