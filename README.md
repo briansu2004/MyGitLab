@@ -2,17 +2,17 @@
 
 My GitLab
 
-## My GitLab (pipeline + Merge Request template) + GCP (GCS + BigQuery + CLI) + Python project
+## My GitLab (pipeline + Merge Request template) + GCP (GCS + BigQuery + CLI) + Python + Shell project
 
 ### Business flow
 
 - Data Owner (not technical)
   - Check data
   - Create data changes (follow the rules)
-  - Create the SNOW request
+  - Create the request
 
 - Data Governance (not technical)
-  - Approve or decline the SNOW request
+  - Approve or decline the request
 
 - Data Operator (technical)
   - Create GitLab feature branch based on the approved SNOW request
@@ -31,6 +31,10 @@ My GitLab
 
 - Downstream applications
   - Enjoy the new data
+
+### Details
+
+[A GitLab pipeline example](a_GitLab_Pipeline_Example.md)
 
 ### Different approach with pure Python (didn't use)
 
@@ -449,7 +453,7 @@ This one doesn't work properly!
 
 Try with these ideas:
 
-![1663985477900](image/README/1663985477900.png)
+![1663985477900](image/README/rules.png)
 
 ```dos
 merge request pipeline 
